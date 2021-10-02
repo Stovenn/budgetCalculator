@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import {
   Card,
   Typography,
@@ -8,9 +8,11 @@ import {
   TextField,
   Autocomplete,
 } from "@mui/material";
-import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
-import DownloadTwoToneIcon from '@mui/icons-material/DownloadTwoTone';
+import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
+import DownloadTwoToneIcon from "@mui/icons-material/DownloadTwoTone";
 import ExpenseItem from "./ExpenseItem";
+
+import useDownload from "../hooks/useDownload";
 
 const categoryList = [
   "Bank",
@@ -30,6 +32,9 @@ const BudgetContainer = () => {
 
   const [total, setTotal] = useState(false);
   const [errors, setErrors] = useState(false);
+
+  let downloadBtn = useRef(null)
+  const { fileName, download, downloadUrl } = useDownload(expensesList, downloadBtn);
 
   useEffect(() => {
     const calculateTotal = () => {
@@ -194,16 +199,27 @@ const BudgetContainer = () => {
             />
           );
         })}
-        <Grid container mt={5} >
+        <Grid container mt={5}>
           <Grid item xs={9}>
             <Typography variant="h4" gutterBottom>
               Total: {total}$
             </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Button variant="outlined" > <DownloadTwoToneIcon fontSize="large" /> <Typography variant="button" gutterBottom>
-              Download report
-            </Typography></Button>
+            <Button variant="outlined" onClick={(e) => download(e)}>
+              <DownloadTwoToneIcon fontSize="large" />
+              <Typography variant="button" gutterBottom>
+                Download report
+              </Typography>
+            </Button>
+            <a
+              style={{ display: "none" }}
+              href={downloadUrl}
+              ref={ downloadBtn }
+              download ={fileName}
+            >
+              download it
+            </a>
           </Grid>
         </Grid>
       </CardContent>
