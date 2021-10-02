@@ -23,7 +23,7 @@ const categoryList = [
   "Investment",
 ];
 
-const BudgetContainer = () => {
+const BudgetContainer = (props) => {
   const [category, setCategory] = useState(categoryList[0]);
   const [inputCategory, setInputCategory] = useState("");
   const [name, setName] = useState("");
@@ -102,6 +102,7 @@ const BudgetContainer = () => {
           },
         ];
       });
+      props.openAdded(true)
       setName("");
       setAmount("");
     }
@@ -112,6 +113,7 @@ const BudgetContainer = () => {
       let newList = prevState.filter((expense) => expense.id !== id);
       return newList;
     });
+    props.openDeleted(true)
   };
 
   return (
@@ -173,17 +175,17 @@ const BudgetContainer = () => {
 
         <Grid container mt={3}>
           <Grid item xs={3}>
-            <Typography variant="h4" color="text.secondary" gutterBottom>
+            <Typography variant="h5" color="text.secondary" gutterBottom>
               Category
             </Typography>
           </Grid>
           <Grid item xs={4}>
-            <Typography variant="h4" color="text.secondary" gutterBottom>
+            <Typography variant="h5" color="text.secondary" gutterBottom>
               Name
             </Typography>
           </Grid>
           <Grid item xs={3}>
-            <Typography variant="h4" color="text.secondary" gutterBottom>
+            <Typography variant="h5" color="text.secondary" gutterBottom>
               Amount
             </Typography>
           </Grid>

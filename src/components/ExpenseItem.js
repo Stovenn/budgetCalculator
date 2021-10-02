@@ -8,17 +8,17 @@ const ExpenseItem = (props) => {
     <Paper elevation={1} sx={{ marginBottom: 3, padding: 1 }}>
       <Grid container>
         <Grid item xs={3}>
-          <Typography sx={{ fontSize: 25, marginTop: 0.9}} gutterBottom>
+          <Typography sx={{ fontSize: 20, marginTop: 0.9}} gutterBottom>
             {category}
           </Typography>
         </Grid>
         <Grid item xs={4}>
-          <Typography sx={{ fontSize: 25, marginTop: 0.9 }} gutterBottom>
+          <Typography sx={{ fontSize: 20, marginTop: 0.9 }} gutterBottom>
             {name}
           </Typography>
         </Grid>
         <Grid item xs={3}>
-          <Typography sx={{ fontSize: 25, marginTop: 0.9}} gutterBottom>
+          <Typography sx={{ fontSize: 20, marginTop: 0.9}} gutterBottom>
             {amount}$
           </Typography>
         </Grid>
