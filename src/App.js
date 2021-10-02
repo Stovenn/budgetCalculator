@@ -7,7 +7,8 @@ import {
   AlertTitle,
 } from "@mui/material";
 
-import ExpensesContainer from "./Components/ExpensesContainer";
+
+import BudgetContainer from "./components/BudgetContainer";
 
 const App = () => {
   
@@ -17,7 +18,7 @@ const App = () => {
   return (
     <div className="App">
       <Container maxWidth="md">
-        <ExpensesContainer openAdded={setAddedOpen} openDeleted={setDeletedOpen} />
+        <BudgetContainer openAdded={setAddedOpen} openDeleted={setDeletedOpen} />
       </Container>
       <Snackbar
         open={addedOpen}
